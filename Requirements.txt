@@ -1,0 +1,15 @@
+Homepage - registration and login authentication
+Faculty - CRUD system for marks, attendance and upcoming exam schedules
+Admin - can do CRUD operations on both faculty and student
+Student - exam schedule remains
+
+DATABASE CREATION, ESTABLISH CONNECTION AND RELATION BETWEEN FRONT AND BACK END
+
+Add Image in user login registration
+
+Add Rgistration and login - Auth and Validtn
+
+Add features like Download PDFs
+
+
+BAKI JO DIMAGME AYGA - DAALTE RHNA

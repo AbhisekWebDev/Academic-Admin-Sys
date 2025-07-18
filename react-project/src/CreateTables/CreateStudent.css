@@ -1,0 +1,184 @@
+/* .create-student-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.student-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #0d6efd;
+  outline: none;
+}
+
+.submit-btn-container {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.submit-btn {
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #2980b9;
+} */
+
+
+
+
+
+/* Container */
+.create-student-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f7f9;
+}
+
+/* Card */
+.create-student-container .form-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Title */
+.create-student-container .form-title {
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* Form layout (two-column) */
+.create-student-container .form-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+/* Each side */
+.create-student-container .form-side {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Group */
+.create-student-container .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.create-student-container .form-group label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #555;
+  font-size: 15px;
+  text-align-last: left;
+}
+
+.create-student-container .form-group input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border 0.3s ease;
+  background-color: #fdfdfd;
+}
+
+.create-student-container .form-group input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Submit button */
+.create-student-container .submit-btn-container {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.create-student-container .submit-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 22px;
+}
+
+.create-student-container .submit-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Responsive: Stack on small screens */
+@media screen and (max-width: 768px) {
+  .create-student-container .form-columns {
+    flex-direction: column;
+  }
+
+  .create-student-container .submit-btn-container {
+    text-align: center;
+  }
+}
