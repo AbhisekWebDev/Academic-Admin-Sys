@@ -12,6 +12,7 @@ import StudentAttendanceTable from './Tables/StudentAttendanceTable'
 import HomePage from './HomePage'
 import CreateStudent from './CreateTables/CreateStudent'
 import CreateFaculty from './CreateTables/CreateFaculty'
+import CreateEvent from './CreateTables/CreateEvent'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,6 +32,7 @@ function App() {
           <Route path="/studentAttendanceTable" element={<StudentAttendanceTable/>} />
           <Route path="/createStudent" element={<CreateStudent/>} />
           <Route path="/createFaculty" element={<CreateFaculty/>} />
+          <Route path="/createEvent" element={<CreateEvent/>} />
         </Routes>
       </BrowserRouter>
     </>

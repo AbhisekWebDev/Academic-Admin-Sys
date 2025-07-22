@@ -1,6 +1,6 @@
 const express = require('express')
 
-const {Student, Faculty, Subject} = require('./DBmodel')
+const {Student, Faculty, Subject, Event} = require('./DBmodel')
 
 const router = express.Router()
 
@@ -71,6 +71,30 @@ router.get('/viewSubjects', async (req, res) => {
   try {
     const subjects = await Subject.find();
     res.status(200).json(subjects);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch subjects', error: err.message });
+  }
+})
+
+// create event
+router.post('/events', async (req, res) => {
+    try {
+        console.log('Req body: ', req.body)
+        const{eventName, eventDate} = req.body
+        const event = new Event({eventName, eventDate})
+        await event.save()
+        res.status(201).json(event)
+    } catch(err) {
+        console.error('Error occurred:', err)
+        res.status(500).json({ message: 'Error creating events' })
+    }
+})
+
+// get events
+router.get('/viewEvents', async (req, res) => {
+  try {
+    const events = await Event.find();
+    res.status(200).json(events);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch subjects', error: err.message });
   }

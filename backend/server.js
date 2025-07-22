@@ -16,6 +16,7 @@ const DBroutes = require('./DBroutes')
 app.use('/students', DBroutes)
 app.use('/faculty', DBroutes)
 app.use('/subjects', DBroutes)
+app.use('/events', DBroutes)
 
 app.get('/', (req, res) => {
     res.send('running')

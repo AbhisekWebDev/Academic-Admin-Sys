@@ -17,7 +17,7 @@
 
 .mainTitle {
   font-size: 2rem;
-  margin-bottom: 40px;
+  margin: 40px 40px 40px 40px;
   color: #2c3e50;
 }
 
@@ -69,4 +69,44 @@
 
 .authBox button:hover {
   background-color: #2980b9;
+}
+
+
+
+
+
+
+
+
+/* navbar css */
+.aaa-navbar {
+  /* width: 100%; */
+  background-color: #ffffff;
+  padding: 12px 24px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* position: sticky; */
+  top: 0;
+  z-index: 10000;
+  border-radius: 12px;
+}
+
+.aaa-navbar-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.aaa-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.aaa-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

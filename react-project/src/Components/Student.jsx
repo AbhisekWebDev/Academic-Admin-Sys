@@ -4,6 +4,7 @@ import StudentStats from './StudentStats'
 import StudentTable from '../Tables/StudentTable'
 import StudentGradeTable from '../Tables/StudentGradeTable'
 import StudentAttendanceTable from '../Tables/StudentAttendanceTable'
+import SideNavEvent from './sideNavEvent'
 
 function Student() {
 
@@ -25,6 +26,9 @@ function Student() {
 
   return (
     <div>
+
+        <SideNavEvent/>
+
         <h1>Student Dashboard</h1>
         
         <div className="dashButton">

@@ -37,9 +37,16 @@ const userSchema = new mongoose.Schema({
     password : {type : String, required : true}
 })
 
+// create events collection schema
+const eventSchema = new mongoose.Schema({
+    eventName : {type : String, require : true},
+    eventDate : {type : Date, default : Date.now}
+})
+
 module.exports = {
     Student : mongoose.model('Student', studentSchema),
     Faculty : mongoose.model('Faculty', facultySchema),
     Subject : mongoose.model('Subject', subjectSchema),
-    User : mongoose.model('User', userSchema)
+    User : mongoose.model('User', userSchema),
+    Event : mongoose.model('Event', eventSchema)
 }

@@ -2,6 +2,8 @@ import {React, useState} from 'react'
 import FacultyTable from '../Tables/FacultyTable'
 import { Link, Routes, Route } from 'react-router-dom'
 
+import SideNavEvent from './SideNavEvent'
+
 function Faculty() {
 
     const [activeTab, setActiveTab] = useState('dashboard')
@@ -21,6 +23,9 @@ function Faculty() {
 
   return (
     <div>
+
+        <SideNavEvent />
+
         <h1>Faculty Dashboard</h1>
         
         <div className="dashButton">

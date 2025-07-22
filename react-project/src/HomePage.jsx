@@ -57,9 +57,15 @@ function HomePage() {
 
   return (
     <div className="homeContainer">
-      <img src={AAAlogo} alt="AAA Logo" className="logo" />
+      {/* <img src={AAAlogo} alt="AAA Logo" className="logo" /> */}
+      <header className="aaa-navbar">
+      <div className="aaa-navbar-content">
+        <img src={AAAlogo} alt="AAA Logo" className="aaa-logo" />
+        <h1 className="aaa-title">Academic and Administrative System</h1>
+      </div>
+    </header>
 
-      <h1 className="mainTitle">Academic And Administrative System</h1>
+      <h1 className="mainTitle">System Registration/Login</h1>
 
       <div className="authContainer">
 
@@ -118,6 +124,7 @@ function HomePage() {
             required 
             />
             <button type="submit">Login</button>
+            <p style={{textAlign:'right'}}>Already an user? <br/> Try logging in</p>
           </form>
         </div>
       </div>

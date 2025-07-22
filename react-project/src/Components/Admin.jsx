@@ -8,6 +8,8 @@ import axios from 'axios'
 
 import AdminNavbar from './AdminNavbar'
 
+import SideNavEvent from './SideNavEvent'
+
 function Admin() {
 
     const [studentCount, setStudentCount] = useState(0) // state for student count
@@ -34,6 +36,8 @@ function Admin() {
 
   return (
     <div>
+
+      <SideNavEvent />
 
       <AdminNavbar />
 
