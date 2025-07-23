@@ -6,6 +6,8 @@ import StudentGradeTable from '../Tables/StudentGradeTable'
 import StudentAttendanceTable from '../Tables/StudentAttendanceTable'
 import SideNavEvent from './sideNavEvent'
 
+// import 'bootstrap/dist/css/bootstrap.min.css'
+
 function Student() {
 
   const [activeTab, setActiveTab] = useState('dashboard')
@@ -40,6 +42,7 @@ function Student() {
 
       <StudentStats />
       {renderContent()}
+
 
     </div>
   )
