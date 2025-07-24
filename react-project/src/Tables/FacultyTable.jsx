@@ -40,7 +40,7 @@ function FacultyTable({onCountUpdate}) {
                               <th>Email</th>
                               <th>Phone</th>
                               <th>Role</th>
-                              <th>Dept</th>
+                              <th>Department</th>
                               <th>Faculty No.</th>
                               <th>Joining Date</th>
                           </tr>

@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 
 const studentSchema = new mongoose.Schema({
     name : {type : String, required : true},
-    email : {type : String, required : true},
+    email : {type : String, required : true, unique : true},
     phone : {type : Number, required : true},
     role : {type : String, required : true},
     dept : {type : String, required : true},
-    enroll_no : {type : String, required : true},
+    enroll_no : {type : String, required : true, unique : true},
     joiningDate: { type: Date, default: Date.now }
     
     // subjects wala hua to thik warna choro / reference to subjects
@@ -21,11 +21,11 @@ const subjectSchema = new mongoose.Schema({
 
 const facultySchema = new mongoose.Schema({
     name : {type : String, required : true},
-    email : {type : String, required : true},
+    email : {type : String, required : true, unique : true},
     phone : {type : Number, required : true},
     role : {type : String, required : true},
     dept : {type : String, required : true},
-    faculty_no : {type : String, required : true},
+    faculty_no : {type : String, required : true, unique : true},
     joiningDate: { type: Date, default: Date.now }
 })
 

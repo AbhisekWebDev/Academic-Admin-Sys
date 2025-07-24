@@ -4,13 +4,30 @@ import './StudentTable.css'
 
 function StudentTable() {
 
-    const [students, setStudents] = useState([])
+    const [students, setStudents] = useState(null)
 
     useEffect( () => {
-        axios.get(`http://localhost:5000/students/viewStudent`)
-        .then(res => setStudents(res.data))
-        .catch(err => console.error('Error fetching users:', err))
+        const fetchStudent = async () => {
+            const token = localStorage.getItem('token')
+
+            try {
+                const res = await axios.get('http://localhost:5000/api/dashboard', {
+                    headers: {
+                        'auth-token': token // sending the token in the header for authentication to the backend
+                    }
+                })
+                setStudents([res.data]) // Store the single student in an array
+            } catch (err) {
+                console.error('Error fetching student data:', err)  
+            }
+        }
+        fetchStudent()
     }, [] )
+    
+    // If students is null, show loading state
+    if (!students) {
+        return <div style={{marginTop:"30px"}}>Loading...</div>
+    }
 
   return (
     <div>
@@ -24,7 +41,7 @@ function StudentTable() {
                               <th>Email</th>
                               <th>Phone</th>
                               <th>Role</th>
-                              <th>Dept</th>
+                              <th>Department</th>
                               <th>Enroll No.</th>
                               <th>Joining Date</th>
                           </tr>
