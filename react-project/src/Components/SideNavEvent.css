@@ -147,6 +147,7 @@
   .sne-sidebar {
     width: 200px;
     padding: 14px;
+    height: 100%;
   }
 
   .sne-title {
@@ -177,6 +178,7 @@
   .sne-sidebar {
     width: 180px;
     padding: 12px;
+    height: 100%;
   }
 
   .sne-title {

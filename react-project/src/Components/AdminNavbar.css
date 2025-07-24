@@ -1,0 +1,140 @@
+.admin-navbar {
+  background-color: #f8f9fa;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.navbar-left {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  color: #47d583;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-buttons button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-buttons button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+/* Responsive Design */
+@media (max-width: 700px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-buttons {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav-buttons.show {
+    display: flex;
+  }
+
+  .nav-buttons button {
+    width: 100%;
+    max-width: 250px;
+    margin: 5px auto;
+    border-radius: 30px;
+  }
+
+  .admin-navbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .navbar-left {
+    width: auto;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 480px) {
+  .admin-navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .navbar-left {
+    width: auto;
+    font-size: 16px;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 22px; /* slightly smaller for tiny screens */
+  }
+
+  .nav-buttons {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav-buttons.show {
+    display: flex;
+  }
+
+  .nav-buttons button {
+    width: 100%;
+    max-width: 300px;
+    margin: 6px auto;
+    font-size: 14px;
+  }
+}

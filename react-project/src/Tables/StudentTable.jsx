@@ -24,8 +24,8 @@ function StudentTable() {
                               <th>Email</th>
                               <th>Phone</th>
                               <th>Role</th>
-                              <th>Department</th>
-                              <th>Enrollment No.</th>
+                              <th>Dept</th>
+                              <th>Enroll No.</th>
                               <th>Joining Date</th>
                           </tr>
                       </thead>
