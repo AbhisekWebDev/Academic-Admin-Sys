@@ -1,10 +1,11 @@
 const express = require('express')
 
-const {Student, Faculty, Subject, Event, StudentSubject} = require('./DBmodel')
+const {Student, Faculty, Subject, Event, StudentSubject, User} = require('./DBmodel')
 
 const router = express.Router()
 
 const upload = require('./uploadConfigMulter')
+const { useTransition } = require('react')
 
 // create students
 router.post('/sregister', upload.single('photo'), async (req, res) => {
@@ -173,10 +174,10 @@ router.get('/viewSubjects', async (req, res) => {
 })
 
 // student subjects assign
-router.post('/assign', async (req, res) => {
-    const { studentId, subjectId, facultyId } = req.body
+router.post('/assign',  async (req, res) => {
+    const { studentId, subjectId, marks, attendance } = req.body
     try{
-        const exists = await StudentSubject.findOne({ student: studentId, subject: subjectId, faculty: facultyId })
+        const exists = await StudentSubject.findOne({ student: studentId, subject: subjectId })
 
         if (exists) 
             return res.status(400).json({ message: 'Subject already assigned to student' })
@@ -184,7 +185,8 @@ router.post('/assign', async (req, res) => {
         const assignment = new StudentSubject({
             student: studentId,
             subject: subjectId,
-            faculty: facultyId
+            marks: parseFloat(marks),
+            attendance: parseFloat(attendance)
         })
         await assignment.save()
         res.status(201).json({ message: 'Subject assigned to student successfully' })
@@ -199,7 +201,7 @@ router.get('/viewStudentSubjects/:studentId', async (req, res) => {
     try {
         const subjects = await StudentSubject.find({ student: req.params.studentId })
             .populate('subject')
-            .populate('faculty', 'name email');
+            // .populate('faculty', 'name email');
         
         res.status(200).json(subjects);
     } catch (err) {
@@ -242,6 +244,19 @@ router.put('/updateStudentSubject/:id', async (req, res) => {
     } catch (err) {
         console.error('Error occurred:', err)
         res.status(500).json({ message: 'Error updating student subject' })
+    }
+})
+
+// get student id by enrollno
+router.get('/getStudentByRoll/:enrollNo', async (req, res) => {
+    try {
+        const student = await Student.findOne({enroll_no : req.params.enrollNo})
+
+        if(!student) return res.status(404).json({message : 'student not found'})
+        res.status(200).json(student)
+    } catch (err) {
+        console.error('Error occurred:', err)
+        res.status(500).json({ message: 'Error fetching student by roll number' })
     }
 })
 

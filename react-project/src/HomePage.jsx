@@ -46,7 +46,8 @@ function HomePage() {
           console.log('Login Success:', res.data)
 
           // Store token in localStorage
-          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('token', res.data.token)
+          
           alert('Login Successful!')
           navigate('/selection') // redirect user after successful logn
         } catch (err) {

@@ -2,7 +2,9 @@ import {React, useState} from 'react'
 import FacultyTable from '../Tables/FacultyTable'
 import { Link, Routes, Route } from 'react-router-dom'
 
-import FacultyAssignForm from '../CRUD/FacultyAssignForm'
+// import FacultyAssignForm from '../CRUD/FacultyAssignForm'
+
+import FacultyEntryForm from '../CRUD/FacultyEntryForm'
 
 import SideNavEvent from './SideNavEvent'
 
@@ -15,7 +17,7 @@ function Faculty() {
           case 'dashboard':
             return <FacultyTable />
           case 'grade':
-            return <FacultyAssignForm /> // yaha change h
+            return <FacultyEntryForm /> // yaha change h
           case 'attendance':
             return <FacultyAttendanceTable />
           default:
@@ -33,8 +35,8 @@ function Faculty() {
         <div className="dashButton">
             <button onClick={() => setActiveTab('dashboard')}>Dashboard</button>
             {/* <Link to ="/FacultyTable"><button>Dashboard</button></Link> */}
-            <button>Attendence</button>
-            <button>Grade</button>
+            <button >Attendence</button>
+            <Link to="/FacultyEntryForm"> <button>Grade</button> </Link>
             <button>Schedule</button>
         </div>
 

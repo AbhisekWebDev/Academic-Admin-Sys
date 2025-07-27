@@ -28,6 +28,8 @@ const protectedRoute = require('./protected')
 app.use('/api/user', authRoute)
 app.use('/api', protectedRoute)
 
+app.use('/api', DBroutes)
+
 // serve the uploads folder statically
 const path = require('path')
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))

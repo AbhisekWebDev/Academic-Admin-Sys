@@ -16,6 +16,7 @@ import CreateEvent from './CreateTables/CreateEvent'
 import EditTableStudent from './CRUD/EditTableStudent'
 import EditTableFaculty from './CRUD/EditTableFaculty'
 import FacultyAssignForm from './CRUD/FacultyAssignForm'
+import FacultyEntryForm from './CRUD/FacultyEntryForm'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,7 +32,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/studentTable" element={<StudentTable />} />
           <Route path="/facultyTable" element={<FacultyTable />} />
-          {/* <Route path="/FacultyAssignForm" element={<FacultyAssignForm />} /> */}
+          <Route path="/FacultyEntryForm" element={<FacultyEntryForm />} />
           <Route path="/studentGradeTable" element={<StudentGradeTable/>} />
           <Route path="/studentAttendanceTable" element={<StudentAttendanceTable/>} />
           <Route path="/createStudent" element={<CreateStudent/>} />

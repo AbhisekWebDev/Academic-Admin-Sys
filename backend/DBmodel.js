@@ -59,11 +59,6 @@ const studentSubjectSchema = new mongoose.Schema({
         ref : 'Subject',
         required: true
     },
-    faculty : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'Faculty',
-        required: true
-    },
     marks : {
         type : Number, 
         default : 0
