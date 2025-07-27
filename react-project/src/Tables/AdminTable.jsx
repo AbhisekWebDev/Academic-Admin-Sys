@@ -1,10 +1,15 @@
+// this is for showing all the students in admin panel
+
 import {React, useState, useEffect} from 'react'
 import axios from 'axios'
 import './StudentTable.css'
 
+import { Link } from 'react-router-dom' // for routing to edit page
+import { set } from 'mongoose'
+
 // for student table
 
-function AdminTable({onCountUpdate}) { // recieve function from admin.jsx as props
+function AdminTable({onCountUpdate}) { // recieve function from admin.jsx as props using destructuring
 
     const [students, setStudents] = useState([])
     
@@ -18,6 +23,26 @@ function AdminTable({onCountUpdate}) { // recieve function from admin.jsx as pro
             })
             .catch(err => console.error('Error fetching users:', err))
         }, [] )
+
+        // delete student
+        const handleDelete = async (id) => {
+            const confirmDelete = window.confirm("Are you sure you want to delete this student?")
+
+            if(!confirmDelete) return; // eexit if user cancels
+
+            try{
+                await axios.delete(`http://localhost:5000/students/deleteStudent/${id}`)
+                alert("Student deleted successfully")
+
+                // refetch/update state to remove deleted student
+                setStudents(prevStudents =>
+                    prevStudents.filter(student => student._id !== id)
+                )
+            } catch (error) {
+                console.error("Error deleting student:", error)
+                alert("Failed to delete student. Please try again.")
+            }
+        }
 
   return (
     <div>
@@ -34,6 +59,7 @@ function AdminTable({onCountUpdate}) { // recieve function from admin.jsx as pro
                               <th>Department</th>
                               <th>Enrollment No.</th>
                               <th>Joining Date</th>
+                              <th>Edit/Delete Operations</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -45,7 +71,11 @@ function AdminTable({onCountUpdate}) { // recieve function from admin.jsx as pro
                                   <td>{student.role}</td>
                                   <td>{student.dept}</td>
                                   <td>{student.enroll_no}</td>
-                                  <td>{student.joiningDate}</td>
+                                  <td>{new Date(student.joiningDate).toISOString().slice(0, 10)}</td>
+                                    <td className='nav-buttons'>
+                                        <Link to={`/EditTableStudent/${student._id}`}><button className="nav-buttons" style={{color:"green"}}>Edit</button></Link>
+                                        <button className="nav-buttons" style={{color:"purple"}} onClick={() => handleDelete(student._id)}>Delete</button>  
+                                    </td>
                               </tr>
                           ))}
                       </tbody>

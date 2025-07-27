@@ -2,32 +2,12 @@ import React from 'react'
 import './StudentStats.css'
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import { FaCalendarAlt, FaBook } from 'react-icons/fa'
-import { attendanceData } from '../Tables/StudentAttendanceTable'
-import { gradeDataArray } from '../Tables/StudentGradeTable'
+// import { attendanceData } from '../Tables/StudentAttendanceTable'
+// import { gradeDataArray } from '../Tables/StudentGradeTable'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 
-// calculate total attendance in %
-const total_Attended = attendanceData.reduce((sum, item) => sum + item.attended, 0)
-const total_Sessions = attendanceData.reduce((sum, item) => sum + item.total, 0)
-const attendancePercent = ((total_Attended / total_Sessions) * 100).toFixed(1)
-
-// grade calculation
-const totalMarks = gradeDataArray.reduce((sum, item) => sum + Number(item.marks), 0)
-const max_Marks = gradeDataArray.length * 100;
-const gradePercent = ((totalMarks / max_Marks) * 100).toFixed(1)
-
-// chart data
-const attendanceDatax = [
-  { name: 'Present', value: Number(attendancePercent) },
-  { name: 'Absent', value: 100 - attendancePercent }
-]
-
-const gradeData = [
-  { name: 'Grade', value: Number(gradePercent) },
-  { name: 'Remaining', value: 100 - gradePercent }
-]
 
 const COLORS = ['#00C49F', '#FF8042'];
 
@@ -35,11 +15,53 @@ function StudentStats() {
 
   // subjects count
   const [subjects, setSubjects] = useState([])
+
+  const [studentData, setStudentData] = useState([])
+
+  const studentId = localStorage.getItem('studentId')
+
   useEffect(() => {
-    axios.get('http://localhost:5000/students/viewSubjects')
-    .then(res => setSubjects(res.data))
-    .catch(err => console.error('Failed to fetch subjects', err))
-  }, [])
+    axios.get(`http://localhost:5000/students/viewStudentGrades/${studentId}`)
+    .then(res => setStudentData(res.data))
+    .catch(err => console.error('Failed to fetch grades and attendance', err))
+  }, [studentId])
+
+  // fetch subjects for the student
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/viewStudentSubjects/${studentId}`)
+      .then(res => setSubjects(res.data))
+      .catch(err => console.error('Failed to fetch subjects', err))
+    
+      if(!studentId) {
+        console.error('No student ID found in localStorage')
+        return
+      }
+  }, [studentId])
+
+
+  // grade calculation
+const totalMarks = studentData.reduce((sum, s) => sum + Number(s.marks || 0), 0)
+const max_Marks = studentData.length * 100;
+const gradePercent = max_Marks > 0 ? ((totalMarks / max_Marks) * 100).toFixed(1) : 0
+
+
+// calculate total attendance in %
+const total_Attendance = studentData.reduce((sum, s) => sum + Number(s.attendance || 0), 0)
+const attendancePercent = studentData.length > 0 ? (totalAttendance / studentData.length).toFixed(1) : 0
+
+const gradeData = [
+  { name: 'Grade', value: Number(gradePercent) },
+  { name: 'Remaining', value: 100 - gradePercent }
+]
+
+// chart data
+const attendanceDatax = [
+  { name: 'Present', value: Number(attendancePercent) },
+  { name: 'Absent', value: 100 - attendancePercent }
+]
+
+
+
 
   return (
     <div className="studentStatsContainer">
@@ -61,7 +83,7 @@ function StudentStats() {
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <h4>83% Precent</h4>
+        <h4>{attendancePercent}% Present</h4>
       </div>
 
       {/* grade chart */}
@@ -82,7 +104,7 @@ function StudentStats() {
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <h4>57 Marks</h4>
+        <h4>{totalMarks} / {max_Marks} Marks</h4>
       </div>
 
       {/* Upcoming Exams */}
@@ -98,7 +120,7 @@ function StudentStats() {
         <h2>Total Subjects</h2>
         <div className="statNumber">{subjects.length}</div>
         {subjects.map((subj, i) => (
-          <h4 key={i} style={{margin:'0'}} >{subj.subjectName.toUpperCase()}</h4>
+          <h4 key={i} style={{margin:'0'}} >{subj.subjectName.toUpperCase() || 'UNKNOWN'}</h4>
         ))}
       </div>
     </div>

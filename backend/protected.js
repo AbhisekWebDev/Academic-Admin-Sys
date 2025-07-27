@@ -2,7 +2,7 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 
-const {Student} = require('./DBmodel') // student ka path
+const {Student, Faculty} = require('./DBmodel') // student ka path aur faculty ka path
 
 const router = require('express').Router()
 
@@ -46,8 +46,28 @@ router.get('/dashboard', auth, async (req, res) => {
     }
 })
 
-router.get('/ping', (req, res) => {
-  res.send('pong')
+// get current logged in faculty details
+router.get('/facultyDashboard', auth, async (req, res) => {
+    try {
+        // find the user who logged in
+        const {User} = require('./DBmodel')
+        const user = await User.findById(req.user._id)
+        if(!user) return res.status(404).send('User not found')
+        
+        if(user.role === 'faculty'){
+            // find faculty details using email
+            const faculty = await Faculty.findOne({email: user.email})
+            if(!faculty) return res.status(404).send('Faculty not found')
+            return res.json(faculty)
+        }
+    } catch (err) {
+        console.error('Dashboard error:', err)
+        res.status(500).send('Server Error')
+    }
+})
+
+router.get('/pinger', (req, res) => {
+  res.send('ponger')
 })
 
 module.exports = router

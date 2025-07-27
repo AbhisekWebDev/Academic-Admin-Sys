@@ -2,6 +2,8 @@ import {React, useState} from 'react'
 import FacultyTable from '../Tables/FacultyTable'
 import { Link, Routes, Route } from 'react-router-dom'
 
+import FacultyAssignForm from '../CRUD/FacultyAssignForm'
+
 import SideNavEvent from './SideNavEvent'
 
 function Faculty() {
@@ -13,7 +15,7 @@ function Faculty() {
           case 'dashboard':
             return <FacultyTable />
           case 'grade':
-            return <FacultyGradeTable />
+            return <FacultyAssignForm /> // yaha change h
           case 'attendance':
             return <FacultyAttendanceTable />
           default:

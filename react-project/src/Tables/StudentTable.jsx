@@ -32,7 +32,7 @@ function StudentTable() {
   return (
     <div>
         <h2>Your Details</h2>
-        <div className="studentTable">
+        {/* <div className="studentTable">
             <div className="table">
                   <table>
                       <thead>
@@ -55,13 +55,40 @@ function StudentTable() {
                                   <td>{student.role}</td>
                                   <td>{student.dept}</td>
                                   <td>{student.enroll_no}</td>
-                                  <td>{student.joiningDate}</td>
-                              </tr>
-                          ))}
-                      </tbody>
-                  </table>
-            </div>
-        </div>
+                                  {/* <td>{student.joiningDate}</td> */}
+                                  {/* <td>{new Date(faculty.joiningDate).toISOString().slice(0, 10)}</td> */}
+                              {/* </tr> */}
+                          {/* ))} */}
+                      {/* </tbody> */}
+                  {/* </table> */}
+            {/* </div> */}
+        {/* </div> */}
+
+        <div className="facultyCardContainer">
+              {students.map((student) => (
+                  <div className="facultyCard" key={student._id}>
+                      <div className="facultyCardContent">
+                          <div className="facultyDetails">
+                              <p><strong>Name:</strong> {student.name}</p>
+                              <p><strong>Email:</strong> {student.email}</p>
+                              <p><strong>Phone:</strong> {student.phone}</p>
+                              <p><strong>Role:</strong> {student.role}</p>
+                              <p><strong>Department:</strong> {student.dept}</p>
+                              <p><strong>Faculty No:</strong> {student.faculty_no}</p>
+                              <p><strong>Joining Date:</strong> {new Date(student.joiningDate).toISOString().slice(0, 10)}</p>
+                          </div>
+                          <div className="facultyPhoto">
+                              {student.photo && (
+                                  <img
+                                      src={`http://localhost:5000/${student.photo.replace(/\\/g, '/')}`}
+                                      alt="Faculty"
+                                  />
+                              )}
+                          </div>
+                      </div>
+                      </div>
+  ))}
+</div>
     </div>
   )
 }

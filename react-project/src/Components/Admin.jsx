@@ -9,6 +9,7 @@ import axios from 'axios'
 import AdminNavbar from './AdminNavbar'
 
 import SideNavEvent from './SideNavEvent'
+import AdminTableFaculty from '../Tables/AdminTableFaculty'
 
 function Admin() {
 
@@ -22,13 +23,13 @@ function Admin() {
         switch (activeTab) {
           case 'Sdashboard': // for student table
             return <AdminTable onCountUpdate={setStudentCount} />
-          case 'Fdashboard':
-            return <FacultyTable onCountUpdate={setFacultyCount} />
+          case 'Fdashboard': // for faculty table
+            return <AdminTableFaculty onCountUpdate={setFacultyCount} />
           default:
             // return (
             //   <>
             //     <AdminTable onCountUpdate={setStudentCount} />
-            //     <FacultyTable onCountUpdate={setFacultyCount} />
+            //     <FacultyTableFaculty onCountUpdate={setFacultyCount} />
             //    </>
             // )
         }

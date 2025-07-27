@@ -13,7 +13,8 @@ function CreateStudent() {
                 role: '',
                 dept: '',
                 enroll_no: '',
-                joiningDate: ''
+                joiningDate: '',
+                photo: null
             }
         )
 
@@ -27,10 +28,28 @@ function CreateStudent() {
         )
     }
 
+    const handleFileChange = (e) => {
+      setFormData({
+        ...formData,
+        photo: e.target.files[0]
+      })
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+      const form = new FormData()
+      for (let key in formData) {
+        form.append(key, formData[key])
+      }
+
         try {
-            await axios.post('http://localhost:5000/students/sregister', formData)
+            await axios.post('http://localhost:5000/students/sregister', formData, {
+              headers : {
+                'Content-Type': 'multipart/form-data'
+              }
+            })
+
             alert('success')
             setFormData(
                 {
@@ -40,7 +59,8 @@ function CreateStudent() {
                     role: '',
                     dept: '',
                     enroll_no: '',
-                    joiningDate: ''
+                    joiningDate: '',
+                    photo: null
                 }
             )
         } catch (err) {
@@ -186,6 +206,17 @@ function CreateStudent() {
               <div className="form-group">
                 <label>Joining Date</label>
                 <input type="date" name="joiningDate" value={formData.joiningDate} onChange={handleChange} required />
+              </div>
+
+              <div className="form-group">
+                <label>Upload Photo</label>
+                <input
+                  type="file"
+                  name="photo"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  required
+                />
               </div>
 
               <div className="submit-btn-container">
