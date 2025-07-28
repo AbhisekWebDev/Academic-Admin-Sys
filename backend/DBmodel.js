@@ -59,6 +59,14 @@ const studentSubjectSchema = new mongoose.Schema({
         ref : 'Subject',
         required: true
     },
+    enroll_no : {
+        type : String,
+        required: true
+    },
+    facultyName : {
+        type : String,
+        required: true
+    },
     marks : {
         type : Number, 
         default : 0

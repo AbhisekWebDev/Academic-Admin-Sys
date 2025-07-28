@@ -74,7 +74,7 @@ function StudentTable() {
                               <p><strong>Phone:</strong> {student.phone}</p>
                               <p><strong>Role:</strong> {student.role}</p>
                               <p><strong>Department:</strong> {student.dept}</p>
-                              <p><strong>Faculty No:</strong> {student.faculty_no}</p>
+                              <p><strong>Enroll No:</strong> {student.enroll_no}</p>
                               <p><strong>Joining Date:</strong> {new Date(student.joiningDate).toISOString().slice(0, 10)}</p>
                           </div>
                           <div className="facultyPhoto">

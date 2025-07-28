@@ -5,6 +5,8 @@ function FacultyEntryForm() {
 
   const [roll, setRoll] = useState('')
   const [studentId, setStudentId] = useState('')
+  const [enroll_no, setEnrollNo] = useState('')
+  const [facultyName, setFacultyName] = useState('')
   const [subjectId, setSubjectId] = useState('')
   const [subjectName, setSubjectName] = useState('')
   const [marks, setMarks] = useState('')
@@ -45,6 +47,8 @@ function FacultyEntryForm() {
         studentId,
         subjectId: subject._id,
         marks,
+        enroll_no,
+        facultyName,
         attendance
       }, {
           headers: {
@@ -72,6 +76,8 @@ function FacultyEntryForm() {
       alert('Subject assigned and updated successfully')
       setRoll('')
       setStudentId('')
+      setEnrollNo('')
+      setFacultyName('')
       setSubjectId('')
       setSubjectName('')
       setMarks('')
@@ -83,51 +89,99 @@ function FacultyEntryForm() {
   }
 
   return (
-    <div>
-      <h2>Faculty Entry Panel</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: '300px', gap: '12px' }}>
-        <input
-          type="text"
-          placeholder="Enter Student Roll Number"
-          value={roll}
-          onChange={(e) => setRoll(e.target.value)}
-        />
-        <button type="button" onClick={handleFindStudent}>Find Student</button>
+    <div className="create-student-container">
+      <div className="form-card">
+        <h2 className="form-title">Faculty Entry Panel</h2>
+        <form onSubmit={handleSubmit} className="student-form">
+          <div className="form-columns">
+            <div className="form-side">
+              <div className="form-group">
+                <label>Student Roll Number</label>
+                <input
+                  type="text"
+                  placeholder="Enter Roll"
+                  value={roll}
+                  onChange={(e) => setRoll(e.target.value)}
+                  required
+                />
+                <button type="button" onClick={handleFindStudent}>Find Student</button>
+              </div>
 
-        <input
-          type="text"
-          placeholder="Enter Subject Code"
-          value={subjectId}
-          onChange={(e) => setSubjectId(e.target.value)}
-          required
-        />
+              <div className="form-group">
+                <label>Subject Code</label>
+                <input
+                  type="text"
+                  placeholder="Enter Subject Code"
+                  value={subjectId}
+                  onChange={(e) => setSubjectId(e.target.value)}
+                  required
+                />
+              </div>
 
-        <input
-          type="text"
-          placeholder="Enter Subject Name"
-          value={subjectName}
-          onChange={(e) => setSubjectName(e.target.value)}
-          required
-        />
+              <div className="form-group">
+                <label>Subject Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter Subject Name"
+                  value={subjectName}
+                  onChange={(e) => setSubjectName(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
 
-        <input
-          type="number"
-          placeholder="Enter Marks"
-          value={marks}
-          onChange={(e) => setMarks(e.target.value)}
-          required
-        />
+            <div className="form-side">
+              <div className="form-group">
+                <label>Faculty Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter Faculty Name"
+                  value={facultyName}
+                  onChange={(e) => setFacultyName(e.target.value)}
+                  required
+                />
+              </div>
 
-        <input
-          type="number"
-          placeholder="Enter Attendance (%)"
-          value={attendance}
-          onChange={(e) => setAttendance(e.target.value)}
-          required
-        />
+              <div className="form-group">
+                <label>Student Enroll Number</label>
+                <input
+                  type="text"
+                  placeholder="Enter Roll Number"
+                  value={enroll_no}
+                  onChange={(e) => setEnrollNo(e.target.value)}
+                  required
+                />
+              </div>
 
-        <button type="submit">Assign & Update</button>
-      </form>
+              <div className="form-group">
+                <label>Marks</label>
+                <input
+                  type="number"
+                  placeholder="Enter Marks"
+                  value={marks}
+                  onChange={(e) => setMarks(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Attendance (%)</label>
+                <input
+                  type="number"
+                  placeholder="Enter Attendance"
+                  value={attendance}
+                  onChange={(e) => setAttendance(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="submit-btn-container">
+                <button type="submit" className="submit-btn">Assign & Update</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

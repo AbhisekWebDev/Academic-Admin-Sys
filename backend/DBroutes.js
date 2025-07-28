@@ -186,6 +186,8 @@ router.post('/assign',  async (req, res) => {
             student: studentId,
             subject: subjectId,
             marks: parseFloat(marks),
+            enroll_no: req.body.enroll_no,
+            facultyName: req.body.facultyName,
             attendance: parseFloat(attendance)
         })
         await assignment.save()
@@ -212,6 +214,7 @@ router.get('/viewStudentSubjects/:studentId', async (req, res) => {
 
 // get grades for a student
 router.get('/viewStudentGrades/:studentId', async (req, res) => {
+    console.log("Requested ID:", req.params.studentId)
     try {
         const grades = await StudentSubject.find({ student: req.params.studentId })
             .populate('subject', 'subjectName subjectCode')
@@ -258,6 +261,17 @@ router.get('/getStudentByRoll/:enrollNo', async (req, res) => {
         console.error('Error occurred:', err)
         res.status(500).json({ message: 'Error fetching student by roll number' })
     }
+})
+// get by email student
+router.get('/getStudentByEmail/:email', async (req, res) => {
+  try {
+    const student = await Student.findOne({ email: req.params.email })
+    if (!student) return res.status(404).json({ message: 'Student not found' })
+    res.status(200).json(student)
+  } catch (err) {
+    console.error('Error fetching student by email:', err)
+    res.status(500).json({ message: 'Server error' })
+  }
 })
 
 // create event

@@ -35,7 +35,7 @@ function Faculty() {
         <div className="dashButton">
             <button onClick={() => setActiveTab('dashboard')}>Dashboard</button>
             {/* <Link to ="/FacultyTable"><button>Dashboard</button></Link> */}
-            <button >Attendence</button>
+            {/* <button >Attendence</button> */}
             <Link to="/FacultyEntryForm"> <button>Grade</button> </Link>
             <button>Schedule</button>
         </div>

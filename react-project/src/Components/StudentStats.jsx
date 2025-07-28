@@ -18,24 +18,45 @@ function StudentStats() {
 
   const [studentData, setStudentData] = useState([])
 
-  const studentId = localStorage.getItem('studentId')
+  // const studentId = localStorage.getItem('studentId')
+  // console.log("Student ID in localStorage:", studentId)
+
+  const [studentId, setStudentId] = useState('')
+
+  const userEmail = localStorage.getItem('email')
+  
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/students/viewStudentGrades/${studentId}`)
-    .then(res => setStudentData(res.data))
-    .catch(err => console.error('Failed to fetch grades and attendance', err))
-  }, [studentId])
 
-  // fetch subjects for the student
-  useEffect(() => {
-    axios.get(`http://localhost:5000/api/viewStudentSubjects/${studentId}`)
-      .then(res => setSubjects(res.data))
-      .catch(err => console.error('Failed to fetch subjects', err))
-    
-      if(!studentId) {
+  const role = localStorage.getItem('Role')
+
+  if (role !== 'student') {
+    console.warn('Not a student')
+    return
+  }
+
+    if(!userEmail) {
         console.error('No student ID found in localStorage')
         return
       }
+
+    // fetch grates
+      axios.get(`http://localhost:5000/students/getStudentByEmail/${userEmail}`)
+    .then(res => setStudentId(res.data._id))
+    .catch(err => console.error('Failed to fetch grades and attendance', err))
+  }, [userEmail])
+
+  // fetch student data (marks, attendance, subjects)
+  useEffect(() => {
+    if (!studentId) return
+
+    axios.get(`http://localhost:5000/students/viewStudentGrades/${studentId}`)
+      .then(res => setStudentData(res.data))
+      .catch(err => console.error('Failed to fetch grades and attendance', err))
+
+    axios.get(`http://localhost:5000/students/viewStudentSubjects/${studentId}`)
+      .then(res => setSubjects(res.data))
+      .catch(err => console.error('Failed to fetch subjects', err))
   }, [studentId])
 
 
@@ -47,7 +68,7 @@ const gradePercent = max_Marks > 0 ? ((totalMarks / max_Marks) * 100).toFixed(1)
 
 // calculate total attendance in %
 const total_Attendance = studentData.reduce((sum, s) => sum + Number(s.attendance || 0), 0)
-const attendancePercent = studentData.length > 0 ? (totalAttendance / studentData.length).toFixed(1) : 0
+const attendancePercent = studentData.length > 0 ? (total_Attendance / studentData.length).toFixed(1) : 0
 
 const gradeData = [
   { name: 'Grade', value: Number(gradePercent) },
@@ -120,7 +141,7 @@ const attendanceDatax = [
         <h2>Total Subjects</h2>
         <div className="statNumber">{subjects.length}</div>
         {subjects.map((subj, i) => (
-          <h4 key={i} style={{margin:'0'}} >{subj.subjectName.toUpperCase() || 'UNKNOWN'}</h4>
+          <h4 key={i} style={{margin:'0'}} >{subj.subject?.subjectName?.toUpperCase() || 'UNKNOWN'}</h4>
         ))}
       </div>
     </div>

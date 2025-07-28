@@ -47,7 +47,11 @@ function HomePage() {
 
           // Store token in localStorage
           localStorage.setItem('token', res.data.token)
-          
+          // Store user ID in localStorage
+          localStorage.setItem('email', res.data.user.email)
+          localStorage.setItem('role', res.data.user.role)
+
+
           alert('Login Successful!')
           navigate('/selection') // redirect user after successful logn
         } catch (err) {

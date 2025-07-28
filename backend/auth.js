@@ -58,7 +58,7 @@ router.post('/userLogin', async (req, res) => {
         {expiresIn : '24h'}
     )
 
-    res.header('auth-token', token).send({token})
+    res.header('auth-token', token).send({token, user: {_id: user._id, name: user.name, email: user.email, role: user.role}})
 })
 
 module.exports = router

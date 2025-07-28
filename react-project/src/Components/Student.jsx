@@ -35,8 +35,8 @@ function Student() {
         
         <div className="dashButton">
         <button onClick={() => setActiveTab('dashboard')}>Dashboard</button>
-        <button onClick={() => setActiveTab('grade')}>Grade</button>
-        <button onClick={() => setActiveTab('attendance')}>Attendance</button>
+        {/* <button onClick={() => setActiveTab('grade')}>Grade</button>
+        <button onClick={() => setActiveTab('attendance')}>Attendance</button> */}
         <button>Exam Schedule</button>
       </div>
 
