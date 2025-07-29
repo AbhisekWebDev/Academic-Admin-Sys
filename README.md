@@ -18,6 +18,8 @@ Administrative Control: Offers administrators comprehensive oversight of system 
 
 Data Management & Security: Designed with robust features to protect user data and ensure compliance with privacy regulations.
 
+Downloadable PDF: Student can download their exam schedules.
+
 This system is an online software solution built to support and improve the teaching and learning environment in an educational setting.
 
 <img width="1919" height="904" alt="image" src="https://github.com/user-attachments/assets/62fe9426-ba1e-4c77-8aca-d0da89578731" />
