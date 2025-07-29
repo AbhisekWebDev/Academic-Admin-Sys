@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 import FacultyTable from '../Tables/FacultyTable'
 import { Link, Routes, Route } from 'react-router-dom'
 
@@ -7,6 +7,15 @@ import { Link, Routes, Route } from 'react-router-dom'
 import FacultyEntryForm from '../CRUD/FacultyEntryForm'
 
 import SideNavEvent from './SideNavEvent'
+
+import FacultyExamSchedule from '../Tables/FacultyExamSchedule'
+
+
+import AddClassForm from '../Tables/AddClassForm'
+
+import axios from 'axios'
+import MyColck from './MyColck'
+
 
 function Faculty() {
 
@@ -18,15 +27,41 @@ function Faculty() {
             return <FacultyTable />
           case 'grade':
             return <FacultyEntryForm /> // yaha change h
-          case 'attendance':
-            return <FacultyAttendanceTable />
+          case 'classes':
+            return <AddClassForm facultyId={facultyId} onClassAdded={fetchClasses}/> // yaha change h
+          case 'schedule':
+            return <FacultyExamSchedule />
           default:
             return <FacultyTable />
         }
       }
 
+      const [classesToday, setClassesToday] = useState([])
+
+      const facultyId = JSON.parse(localStorage.getItem('user'))?._id
+      console.log(facultyId)
+
+      const fetchClasses = async () => {
+        try {
+          console.log("Faculty ID used to fetch classes:", facultyId)
+          const res = await axios.get(`http://localhost:5000/faculty/getTodayClasses/${facultyId}`)
+          setClassesToday(res.data)
+        } catch (error) {
+          console.error('Error fetching classes:', error)
+        }
+      }
+
+      useEffect(() => {
+    if (facultyId) {
+      fetchClasses();
+    }
+  }, [facultyId])
+
+
   return (
     <div>
+
+      <MyColck/>
 
         <SideNavEvent />
 
@@ -37,29 +72,41 @@ function Faculty() {
             {/* <Link to ="/FacultyTable"><button>Dashboard</button></Link> */}
             {/* <button >Attendence</button> */}
             <Link to="/FacultyEntryForm"> <button>Grade</button> </Link>
-            <button>Schedule</button>
+            <button onClick={() => setActiveTab('classes')}>Classes</button>
+            <button onClick={() => setActiveTab('schedule')}>Schedule</button>
         </div>
 
         <div className="dashCard">
             <div className="classStats">
-                <h2>Classes Today</h2>
-                <h4>4</h4>
+                <h2 style={{marginBottom:'10px'}}>Classes Today</h2>
+                {classesToday.length === 0 ? (
+                  <p style={{color:'#27ae60', marginTop:'10px'}}>No classes added</p>
+                ) : (
+                  classesToday.map((cls, index) => (
+                    <div key={index}>
+                      <strong style={{color:'#27ae60'}}>{cls.subject} — {cls.time} @ Room {cls.classroom}</strong> 
+                    </div>
+                  ))
+                )}
             </div>
 
             <div className="gradeStats">
-                <h2>Grade</h2>
-                <h4>5</h4>
+                <h2>Your Salary</h2>
+                <h4>INR <br /> ₹50,000</h4>
             </div>
 
             <div className="attendenceStats">
-                <h2>Student Attendance</h2>
-                <h4>6</h4>
+                <h2>Your Leaves</h2>
+                <h4>Approved <br /> Declined</h4>
             </div>
         </div>
 
         {/* <Routes>
             <Route path="/facultyTable" element={<FacultyTable />} />
         </Routes> */}
+
+        
+
 
         {renderContent()}
 

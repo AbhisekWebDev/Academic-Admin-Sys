@@ -104,7 +104,8 @@ function FacultyEntryForm() {
                   onChange={(e) => setRoll(e.target.value)}
                   required
                 />
-                <button type="button" onClick={handleFindStudent}>Find Student</button>
+                <button type="button" onClick={handleFindStudent} style={{marginTop:'15px'}}>Find Student</button>
+                <h3 style={{marginTop:'20px', color:'green'}}>{studentId ? `Student ID: ${studentId}` : 'Student RegID'}</h3>
               </div>
 
               <div className="form-group">

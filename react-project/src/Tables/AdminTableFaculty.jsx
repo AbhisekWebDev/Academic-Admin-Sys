@@ -71,8 +71,8 @@ function AdminTableFaculty({onCountUpdate}) { // receive function from Admin.jsx
                   <td>{faculty.faculty_no}</td>
                   <td>{new Date(faculty.joiningDate).toISOString().slice(0, 10)}</td>
                   <td className='nav-buttons'>
-                                        <Link to={`/EditTableFaculty/${faculty._id}`}><button className="nav-buttons" style={{color:"green"}}>Edit</button></Link>
-                                        <button className="nav-buttons" style={{color:"purple"}} onClick={() => handleDelete(faculty._id)}>Delete</button>  
+                                        <Link to={`/EditTableFaculty/${faculty._id}`}><button className="nav-buttons" >Edit</button></Link>
+                                        <button className="nav-buttons"  onClick={() => handleDelete(faculty._id)}>Delete</button>  
                                     </td>
                 </tr>
               ))}

@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import AAAlogo from './assets/AAAlogo.png'
+import MyColck from './Components/MyColck'
 
 function SelectionPanel() {
     return (
         <div>
+            <MyColck />
             <div className="image">
                 <img src={AAAlogo} alt="AAA Logo" className="logoImage" style={{
                     width: '120px',

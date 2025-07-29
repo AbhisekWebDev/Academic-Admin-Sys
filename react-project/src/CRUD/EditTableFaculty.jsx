@@ -114,7 +114,7 @@ function EditTableFaculty() {
 
               <div className="form-group">
                 <label>Faculty Number</label>
-                <input type="text" name="enroll_no" value={updateData.enroll_no} onChange={handleChange} placeholder="Enter enrollment number" required />
+                <input type="text" name="faculty_no" value={updateData.faculty_no} onChange={handleChange} placeholder="Enter enrollment number" required />
               </div>
 
               <div className="form-group">

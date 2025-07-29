@@ -140,9 +140,23 @@ const attendanceDatax = [
         {/* <FaBook className="statIcon" /> */}
         <h2>Total Subjects</h2>
         <div className="statNumber">{subjects.length}</div>
-        {subjects.map((subj, i) => (
-          <h4 key={i} style={{margin:'0'}} >{subj.subject?.subjectName?.toUpperCase() || 'UNKNOWN'}</h4>
-        ))}
+        {subjects.map((subj, i) => {
+          const subjectId = subj.subject?._id
+
+          const match = studentData.find(s => {
+            // handle both object and string for subject field
+            const sId = typeof s.subject === 'object' ? s.subject._id : s.subject
+            return String(sId) === String(subjectId)
+          });
+
+          const marks = match?.marks ?? 'N/A'
+
+          return (
+            <h4 key={i} style={{ margin: '0' }}>
+              {subj.subject?.subjectName?.toUpperCase() || 'UNKNOWN'} — {marks} Marks
+            </h4>
+          )
+        })}
       </div>
     </div>
   );

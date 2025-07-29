@@ -141,6 +141,7 @@
   font-size: 15px;
   transition: border 0.3s ease;
   background-color: #fdfdfd;
+  color: black;
 }
 
 .create-student-container .form-group input:focus {

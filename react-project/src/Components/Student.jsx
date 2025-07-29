@@ -5,6 +5,8 @@ import StudentTable from '../Tables/StudentTable'
 import StudentGradeTable from '../Tables/StudentGradeTable'
 import StudentAttendanceTable from '../Tables/StudentAttendanceTable'
 import SideNavEvent from './sideNavEvent'
+import StudentExamSchedule from '../PDFDownload/StudentExamSchedule'
+import MyColck from './MyColck'
 
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -16,10 +18,10 @@ function Student() {
     switch (activeTab) {
       case 'dashboard':
         return <StudentTable />
-      case 'grade':
-        return <StudentGradeTable />
-      case 'attendance':
-        return <StudentAttendanceTable />
+      // case 'grade':
+      //   return <StudentGradeTable />
+      case 'schedule':
+        return <StudentExamSchedule />
       default:
         return <StudentTable />
     }
@@ -29,6 +31,8 @@ function Student() {
   return (
     <div>
 
+    <MyColck/>
+
         <SideNavEvent/>
 
         <h1>Student Dashboard</h1>
@@ -37,7 +41,7 @@ function Student() {
         <button onClick={() => setActiveTab('dashboard')}>Dashboard</button>
         {/* <button onClick={() => setActiveTab('grade')}>Grade</button>
         <button onClick={() => setActiveTab('attendance')}>Attendance</button> */}
-        <button>Exam Schedule</button>
+        <button onClick={() => setActiveTab('schedule')}>Exam Schedule</button>
       </div>
 
       <StudentStats />

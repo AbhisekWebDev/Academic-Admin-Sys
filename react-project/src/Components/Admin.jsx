@@ -10,6 +10,7 @@ import AdminNavbar from './AdminNavbar'
 
 import SideNavEvent from './SideNavEvent'
 import AdminTableFaculty from '../Tables/AdminTableFaculty'
+import MyColck from './MyColck'
 
 function Admin() {
 
@@ -26,17 +27,17 @@ function Admin() {
           case 'Fdashboard': // for faculty table
             return <AdminTableFaculty onCountUpdate={setFacultyCount} />
           default:
-            // return (
-            //   <>
-            //     <AdminTable onCountUpdate={setStudentCount} />
-            //     <FacultyTableFaculty onCountUpdate={setFacultyCount} />
-            //    </>
-            // )
+            return (
+                <AdminTable onCountUpdate={setStudentCount} />
+              
+            )
         }
       }
 
   return (
     <div>
+
+    <MyColck/>
 
       <SideNavEvent />
 
@@ -63,8 +64,8 @@ function Admin() {
             </div>
 
             <div className="attendenceStats">
-                <h2>Total Attendance</h2>
-                <h4>678</h4>
+                <h2>Admin Details</h2>
+                <h4>Name - Mr. Admin <br /> ID - Admin123</h4>
             </div>
         </div>
 

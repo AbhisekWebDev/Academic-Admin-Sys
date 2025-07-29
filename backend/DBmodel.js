@@ -81,11 +81,32 @@ const studentSubjectSchema = new mongoose.Schema({
 
 
 
+// exam schedule
+const examScheduleSchema = new mongoose.Schema({
+  subjectCode: String,
+  subjectName: String,
+  examDate: Date,
+  createdBy: String, // optional: store faculty name/email
+}, { timestamps: true })
+
+
+// faculty classes
+const FacultyClassSchema = new mongoose.Schema({
+   facultyId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  subject: String,
+  time: String,
+  classroom: String,
+  date: String // stored as YYYY-MM-DD
+})
+
+
 module.exports = {
     Student : mongoose.model('Student', studentSchema),
     Faculty : mongoose.model('Faculty', facultySchema),
     Subject : mongoose.model('Subject', subjectSchema),
     User : mongoose.model('User', userSchema),
     Event : mongoose.model('Event', eventSchema),
-    StudentSubject : mongoose.model('StudentSubject', studentSubjectSchema)
+    StudentSubject : mongoose.model('StudentSubject', studentSubjectSchema),
+    ExamSchedule: mongoose.model('ExamSchedule', examScheduleSchema),
+    FacultyClass: mongoose.model('FacultyClass', FacultyClassSchema)
 }

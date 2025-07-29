@@ -1,6 +1,6 @@
 const express = require('express')
 
-const {Student, Faculty, Subject, Event, StudentSubject, User} = require('./DBmodel')
+const {Student, Faculty, Subject, Event, StudentSubject, User, FacultyClass} = require('./DBmodel')
 
 const router = express.Router()
 
@@ -295,6 +295,60 @@ router.get('/viewEvents', async (req, res) => {
     res.status(200).json(events);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch subjects', error: err.message });
+  }
+})
+
+// exam schedule route
+const { ExamSchedule } = require('./DBmodel')
+router.post('/examSchedule', async (req, res) => {
+    try{
+        const { subjectCode, subjectName, examDate, createdBy } = req.body
+        const schedule = new ExamSchedule({ subjectCode, subjectName, examDate, createdBy })
+        await schedule.save()
+        res.status(201).json(schedule)
+    } catch (err) {
+        console.error('Error occurred:', err)
+        res.status(500).json({ message: 'Error creating exam schedule' })
+    }
+})
+// Get all exam schedules
+router.get('/student/exam-schedule', async (req, res) => {
+  try {
+    const schedules = await ExamSchedule.find().sort({ examDate: 1 })
+    res.json(schedules)
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch schedules' })
+  }
+})
+
+
+// add faculty class route
+router.post('/addClass', async (req, res) => {
+  try {
+    const newClass = new FacultyClass(req.body);
+    await newClass.save();
+    res.status(201).json({ message: 'Class added successfully' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+})
+// get today ka class
+router.get('/getTodayClasses/:facultyId', async (req, res) => {
+  const today = new Date().toISOString().split('T')[0]
+  const facultyId = req.params.facultyId;
+
+  console.log('Faculty ID received:', facultyId)
+  console.log('Today\'s date:', today)
+
+  try {
+    const classes = await FacultyClass.find({
+      facultyId: facultyId,
+      date: today
+    });
+    res.json(classes);
+  } catch (err) {
+    console.error('Fetch classes failed:', err)
+    res.status(500).json({ error: err.message })
   }
 })
 
