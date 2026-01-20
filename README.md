@@ -41,3 +41,132 @@ This system is an online software solution built to support and improve the teac
 
 
 
+
+# Academic Admin System 🎓
+🚧 **Work in Progress**
+
+The **Academic Administration System** is a centralized, web-based platform designed to streamline and enhance academic operations within educational institutions.
+
+It integrates academic, administrative, and communication workflows into a single system, improving collaboration and efficiency for **students, instructors, parents, and administrators**.
+
+---
+
+## 🎯 Purpose
+
+This system aims to improve the overall teaching and learning experience by providing a unified digital environment that supports course management, assessments, communication, and academic tracking.
+
+---
+
+## 🚀 Key Features
+
+### 🏫 Centralized Academic Platform
+- Unified system for managing courses, assessments, and academic communication
+- Central access to learning materials and administrative tools
+
+---
+
+### 👨‍🎓 Student Support
+- Access enrolled courses and learning materials
+- Submit assignments and participate in discussions
+- View recorded lectures and attend live sessions
+- Attempt online examinations
+- Download **exam schedules as PDF**
+- Track academic progress and attendance
+
+---
+
+### 👩‍🏫 Instructor Tools
+- Create and manage courses
+- Upload course materials (documents, videos)
+- Schedule lectures and virtual sessions
+- Conduct online exams and assessments
+- Provide feedback and communicate with students
+- Monitor student performance
+
+---
+
+### 👨‍👩‍👧 Parental Access
+- Monitor student academic performance
+- View grades and attendance records
+- Access course information
+- Communicate with instructors when required
+
+---
+
+### 🛡️ Administrative Control
+- User and role management
+- Course and activity monitoring
+- Report generation
+- System configuration and oversight
+- Technical support management
+
+---
+
+### 🔐 Data Management & Security
+- Secure authentication and authorization
+- Role-based access control
+- Protection of sensitive academic data
+- Designed with privacy and data security in mind
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React.js
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Authentication:** JWT
+- **Tools:** Git, GitHub, Postman
+
+---
+
+## 🖼️ Screenshots
+
+> Below are some screenshots showcasing the application interface and features.
+
+### 🔐 Authentication
+![Login](screenshots/login.png)
+
+### 🧑‍🎓 Student Dashboard
+![Student Dashboard](screenshots/student-dashboard.png)
+
+### 👩‍🏫 Instructor Dashboard
+![Instructor Dashboard](screenshots/instructor-dashboard.png)
+
+### 🏫 Admin Panel
+![Admin Panel](screenshots/admin-dashboard.png)
+
+---
+
+## 🏁 Getting Started
+
+### Clone the repository
+```bash
+git clone https://github.com/AbhisekWebDev/Academic-Admin-Sys.git
+cd Academic-Admin-Sys
+
+Install dependencies
+cd backend
+npm install
+
+cd ../frontend
+npm install
+
+Setup environment variables
+
+Create a .env file using .env.example
+
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+
+Run the project
+# Backend
+npm run dev
+
+# Frontend
+npm start
+
+
+
+
